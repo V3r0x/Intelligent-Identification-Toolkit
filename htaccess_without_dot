@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+RewriteRule ^([^/.]+)/{0,1}$  script.php?product=$1 [QSA,L]
+# format localhost/productname
+# with localhost/product/productname RewriteRule ^([^/.]+)/{0,1}$  script.php?product=$1 [QSA,L]
+</IfModule>
+
+

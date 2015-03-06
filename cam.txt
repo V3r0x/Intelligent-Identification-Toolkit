@@ -1,0 +1,8 @@
+http://localhost/product/car
+http://localhost/product/tire400
+http://localhost/tire400
+http://192.168.178.48/tire400
+http://192.168.178.48/tire400
+http://192.168.178.48/tire400
+http://192.168.178.48/vacuumcleaner
+http://192.168.178.48/tire400
