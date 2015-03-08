@@ -1,13 +1,11 @@
 # Intelligent-Identification-Toolkit
 
-![Intelligent Identification Toolkit Logo](/img/screen.png)
-
 Intelligent Identification Toolkit is a QR Code Scanner that displays data to a scanned stable URI of non-information resource objects. It basically connects non-information objects like 3D printed products with (meta) information. It follows the rules of the Semantic Web (by Tim Berners Lee). Products can be enhanced with QR Code to link them to information. Not yet existing products e.g. 3D printable products can inhert an QR Code on their surface and can be linked to meta information.
 
 ### Hardware Software Requirements
-- Raspberry Pi (NOOBS, or Raspbian OS)
+- Raspberry Pi (NOOBs / Raspbian OS)
 - SD Card
-- Micro usb power supply: 1-1.2 A & 5V 
+- Micro USB power supply: 1-1.2 A & 5V 
 - PiFace Camera or C270 Logitech Webcam or different working Webcam
 - Mouse & Keyboard (or SSH connection / Tightvnc) (enable SSH with sudo rasp-config in Advanced settings options)
 - WinSCP for SFTP file transfer to RPi (IP, Port 22, user: pi pw raspberry)
@@ -45,7 +43,7 @@ go to /var/www folder:
 $cd /var/www/
 ```
 
-### Change rights vor Webfile folder
+### Change rights for Webfile folder
 
 $sudo groupadd www-data (new group www-data)
 $sudo adduser pi www-data (add pi user to the webfolder group)
@@ -95,7 +93,8 @@ The script only functions in the root folder now: localhost (/index.php)or IP of
 
 ### Hint section
 - check apache2 log for errors (in case): $cat /var/log/apache2/errorlog
-- kill processes: e.g. video camera $lsof /dev/video; kill -9 id (of process)
+- kill processes: e.g. video camera $ps aux | grep processname (e.g. zbarcam) ; afterwareds $pkill processid;
+- show processes: $top
 - create shortcut for user pi's home folder to the web root folder $ln -s /var/www ~/www 
 - let Apache2 run as current user (e.g. pi) $sudo nano /etc/apache2/envvars edit lines:
 export APACHE_RUN_USER=www-data <- change to pi

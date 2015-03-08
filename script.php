@@ -80,19 +80,52 @@
 		else{
 			$p = mysqli_fetch_assoc($p);
 			?>
-
-			<h3><?php echo $p['ProductName'];?></h3>
+			<div itemscope itemtype="http://schema.org/Product">
+			<h3><span itemprop="name">
+				<?php echo $p['ProductName'];?>
+				</span>
+			</h3>
 
 			<table class="table table-striped">
-				<tr><th>Creator</th><td><?php echo $p['Creator'];?></td></tr>
-				<tr><th>Publish Date</th><td><?php echo $p['PublishDate'];?></td></tr>
-				<tr><th>Description</th><td><?php echo $p['Description'];?></td></tr>
-				<tr><th>Image</th><td><img src="<?php echo $p['Image'];?>"></td></tr>
-				<tr><th>Instructions</th><td><?php echo $p['Instructions'];?></td></tr>
-				<tr><th>Files</th><td><a href="<?php echo $p['Files'];?>">Download</a> &nbsp; (rightclick: Save As)</td></tr>
-				<tr><th>URI</th><td><img src="<?php echo $p['URI'];?>"></td></tr>
-				<tr><th>License</th><td><?php echo $p['License'];?></td></tr>
-				<tr><th>Tags</th><td><?php echo $p['Tags'];?></td></tr>
+				<tr><th>Creator</th><td>
+						<span itemprop="manufacturer">
+							<?php echo $p['Creator'];?>
+						</span>
+				</td></tr>
+
+				<tr><th>Publish Date</th><td>
+						<span itemprop="releaseDate">
+					<?php echo $p['PublishDate'];?>
+						</span>
+				</td></tr>
+				<tr><th>Description</th><td>
+						<span itemprop="description">
+					<?php echo $p['Description'];?>
+						</span>
+				</td></tr>
+				<tr><th>Image</th><td>
+					<span itemprop="logo"><p style="display: none";><?php echo $p['Image'];?></p></span>
+					<img src="<?php echo $p['Image'];?>">
+				</td></tr>
+				<tr><th>Instructions</th><td> 
+					<!-- no suitable meta from schema.org -->
+					<?php echo $p['Instructions'];?>
+				</td></tr>
+				<tr><th>Files</th><td>
+						<span itemprop="model">
+					<a href="<?php echo $p['Files'];?>">Download</a>
+						</span>
+					 &nbsp; (rightclick: Save As)</td></tr>
+				<tr><th>URI</th><td>
+					<img src="<?php echo $p['URI'];?>">
+				</td></tr>
+				<tr><th>License</th><td>
+					<!-- no suitable meta from schema.org -->
+					<?php echo $p['License'];?>
+				</td></tr>
+				<tr><th>Tags</th><td>
+					<?php echo $p['Tags'];?>
+				</td></tr>
 			</table>
 
 			<hr>
@@ -106,7 +139,7 @@
 				while($row = mysqli_fetch_assoc($children)){
 					$product = $row['link_child'];
 					$p = mysqli_fetch_assoc(mysqli_query($con,"select * from products where link = '$product'"));
-					echo "<div class='col-md-2'><a class='btn btn-primary' href='".$p['Link']."'>".$p['ProductName'].'</a></div>';
+					echo "<div class='col-md-2'><a class='btn btn-primary' href='".$p['Link']."'><span itemprop='isAccessoryOrSparePartFor'>".$p['ProductName'].'</a></div>';
 				}
 				echo "</div></div><hr>";
 			}
@@ -116,7 +149,7 @@
 				while($row = mysqli_fetch_assoc($parent)){
 					$product = $row['link_parent'];
 					$p = mysqli_fetch_assoc(mysqli_query($con,"select * from products where link = '$product'"));
-					echo "<div class='col-md-2'><a class='btn btn-primary' href='".$p['Link']."'>".$p['ProductName'].'</a></div>';
+					echo "<div class='col-md-2'><a class='btn btn-primary' href='".$p['Link']."'><span itemprop='isRelatedTo'>".$p['ProductName'].'</a></div>';
 				}
 				echo "</div></div>";
 			} 
